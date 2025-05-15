@@ -1,0 +1,97 @@
+﻿@model AgriEnergyConnect.Models.Farmer
+
+@{
+    ViewData["Title"] = "Products by Farmer";
+    var finalProducts = Model.Products.ToList();
+}
+
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #d7f8c7;
+        color: #1a3310;
+    }
+
+    .products-by-farmer-section {
+        padding: 2rem;
+        min-height: 100vh;
+    }
+
+    h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #1a3310;
+    }
+
+    .btn-themed {
+        background-color: #8dd99c;
+        color: #1a3310;
+        font-weight: 600;
+        border: none;
+        padding: 0.5rem 1.2rem;
+        border-radius: 1.5rem;
+        transition: 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 1.5rem;
+    }
+
+        .btn-themed:hover {
+            background-color: #7ccc90;
+            color: white;
+        }
+
+    .table {
+        margin-top: 1rem;
+        background-color: #ffffff;
+        border: 1px solid #c8eacc;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+        .table thead {
+            background-color: #8dd99c;
+            color: #1a3310;
+            font-weight: bold;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+            padding: 0.75rem;
+            border: 1px solid #ccecd1;
+        }
+</style>
+
+<div class="products-by-farmer-section">
+    <h2>Products by @Model.Name</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Date Added</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in finalProducts)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Category</td>
+                    <td>@product.Price.ToString("C")</td>
+                    <td>@product.Quantity</td>
+                    <td>@product.DateAdded.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a class="btn-themed" asp-action="Dashboard">← Back to Farmers</a>
+</div>

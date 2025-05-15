@@ -1,0 +1,196 @@
+﻿@model AgriEnergyConnect.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+    var role = Context.Session.GetString("Role");
+}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #d7f8c7;
+        color: #1a3310;
+    }
+
+    .login-section {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+    }
+
+    .login-box {
+        background-color: #ffffff;
+        border: 1px solid #8dd99c;
+        padding: 2rem;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+        .login-box h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a3310;
+        }
+
+    label {
+        color: #1a3310;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-control {
+        background-color: #f0fff3;
+        color: #1a3310;
+        border: 1px solid #8dd99c;
+        border-radius: 8px;
+        padding: 0.6rem;
+        width: 100%;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #7ccc90;
+            box-shadow: 0 0 0 2px rgba(141, 217, 156, 0.3);
+            background-color: #ffffff;
+        }
+
+    .btn-themed {
+        background-color: #8dd99c;
+        color: #1a3310;
+        border: none;
+        width: 100%;
+        padding: 0.75rem;
+        font-weight: bold;
+        font-size: 1rem;
+        border-radius: 20px;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-themed:hover {
+            background-color: #7ccc90;
+        }
+
+    .register-link {
+        text-align: center;
+        margin-top: 1rem;
+        color: #1a3310;
+        font-size: 0.9rem;
+    }
+
+        .register-link a {
+            color: #1a3310;
+            text-decoration: underline;
+        }
+
+            .register-link a:hover {
+                color: #4d7c3b;
+            }
+
+    #loginSuccess {
+        display: none;
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+        #loginSuccess img {
+            width: 80px;
+        }
+
+        #loginSuccess p {
+            color: #1a3310;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+    .fade-out {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+</style>
+
+<div class="login-section">
+    <div class="login-box">
+        <h2>Login</h2>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger text-center">@ViewBag.Error</div>
+        }
+
+        <form asp-action="Login" method="post" id="loginForm">
+            <div class="form-group mb-3">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-4">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-themed">Login</button>
+
+            <div class="register-link">
+                <p>Don't have an account? <a asp-controller="Account" asp-action="RegisterEmployee">Register as Employee</a></p>
+            </div>
+        </form>
+
+        <div id="loginSuccess">
+            <img src="~/images/growingPlant.gif" alt="Logging in..." />
+            <p>Login successful! Redirecting...</p>
+        </div>
+
+       
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const loginSuccess = @Html.Raw(ViewBag.LoginSuccess != null && (bool)ViewBag.LoginSuccess ? "true" : "false");
+
+        if (loginSuccess) {
+            const form = document.getElementById("loginForm");
+            const successDiv = document.getElementById("loginSuccess");
+
+            
+            form.classList.add("fade-out");
+
+            // After fade-out completes, show success animation
+            setTimeout(() => {
+                form.style.display = "none";
+                successDiv.style.display = "block";
+            }, 500);
+
+            // Determine user role from session
+            const userRole = '@role';
+            let redirectUrl = "/";
+
+            if (userRole === "Employee") {
+                redirectUrl = "/Employee/Dashboard";
+            } else if (userRole === "Farmer") {
+                redirectUrl = "/Farmer/Dashboard";
+            }
+
+            // Redirect after short delay
+            setTimeout(() => {
+                window.location.href = redirectUrl;
+            }, 2500);
+        }
+    </script>
+}

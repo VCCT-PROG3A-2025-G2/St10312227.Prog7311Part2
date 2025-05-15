@@ -1,0 +1,134 @@
+﻿@model IEnumerable<AgriEnergyConnect.Models.Product>
+@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "All Products";
+
+    var query = Context.Request.Query;
+    var farmerName = query["farmerName"];
+    var productName = query["productName"];
+    var productType = query["productType"];
+    var startDate = query["startDate"];
+    var endDate = query["endDate"];
+}
+
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #d7f8c7;
+        color: #1a3310;
+    }
+
+    .products-section {
+        padding: 2rem;
+        min-height: 100vh;
+    }
+
+    h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #1a3310;
+    }
+
+    .form-control {
+        background-color: #ffffff;
+        border: 1px solid #8dd99c;
+        color: #1a3310;
+        border-radius: 8px;
+        font-size: 0.95rem;
+    }
+
+    .form-control:focus {
+        border-color: #6ec683;
+        box-shadow: 0 0 0 0.1rem rgba(141, 217, 156, 0.4);
+    }
+
+    .btn-themed {
+        background-color: #8dd99c;
+        color: #1a3310;
+        font-weight: 600;
+        border: none;
+        padding: 0.5rem 1.2rem;
+        border-radius: 1.5rem;
+        transition: 0.3s ease;
+    }
+
+    .btn-themed:hover {
+        background-color: #7ccc90;
+        color: white;
+    }
+
+    .table {
+        margin-top: 1rem;
+        background-color: #ffffff;
+        border: 1px solid #c8eacc;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .table thead {
+        background-color: #8dd99c;
+        color: #1a3310;
+        font-weight: bold;
+    }
+
+    .table th, .table td {
+        vertical-align: middle;
+        padding: 0.75rem;
+        border: 1px solid #ccecd1;
+    }
+</style>
+
+<div class="products-section">
+    <h2>All Products</h2>
+
+    <form method="get" class="row g-3 mb-3">
+        <div class="col-md-2">
+            <input type="text" name="farmerName" value="@farmerName" class="form-control" placeholder="Farmer Name" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="productName" value="@productName" class="form-control" placeholder="Product Name" />
+        </div>
+        <div class="col-md-2">
+            <input type="text" name="productType" value="@productType" class="form-control" placeholder="Product Type" />
+        </div>
+        <div class="col-md-2">
+            <input type="date" name="startDate" value="@startDate" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <input type="date" name="endDate" value="@endDate" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn-themed w-100">Filter</button>
+        </div>
+    </form>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Farmer</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Date Added</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Farmer?.Name</td>
+                    <td>@product.Name</td>
+                    <td>@product.Category</td>
+                    <td>@product.Price</td>
+                    <td>@product.Quantity</td>
+                    <td>@product.DateAdded.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

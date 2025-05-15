@@ -1,0 +1,129 @@
+﻿@model AgriEnergyConnect.ViewModels.EmployeeRegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #d7f8c7;
+        color: #1a3310;
+    }
+
+    .register-section {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+    }
+
+    .register-box {
+        background-color: #ffffff;
+        border: 1px solid #8dd99c;
+        padding: 2rem;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+        .register-box h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a3310;
+        }
+
+    label {
+        color: #1a3310;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-control {
+        background-color: #f0fff3;
+        color: #1a3310;
+        border: 1px solid #8dd99c;
+        border-radius: 8px;
+        padding: 0.6rem;
+        width: 100%;
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #7ccc90;
+            box-shadow: 0 0 0 2px rgba(141, 217, 156, 0.3);
+            background-color: #ffffff;
+        }
+
+    .form-group {
+        margin-bottom: 1.2rem;
+    }
+
+    .btn-themed {
+        background-color: #8dd99c;
+        color: #1a3310;
+        border: none;
+        width: 100%;
+        padding: 0.75rem;
+        font-weight: bold;
+        font-size: 1rem;
+        border-radius: 2rem;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-themed:hover {
+            background-color: #7ccc90;
+        }
+</style>
+
+<div class="register-section">
+    <div class="register-box">
+        <h2>Register as Employee</h2>
+
+        <form asp-action="RegisterEmployee" method="post">
+            <div class="form-group">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Phone"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn-themed">Register</button>
+        </form>
+    </div>
+</div>

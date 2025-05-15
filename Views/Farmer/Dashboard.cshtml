@@ -1,0 +1,106 @@
+﻿@model IEnumerable<AgriEnergyConnect.Models.Product>
+
+@{
+    ViewData["Title"] = "My Products";
+}
+
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #d7f8c7;
+        color: #1a3310;
+        margin: 0;
+        padding: 2rem;
+    }
+
+    .product-section {
+        max-width: 1000px;
+        margin: auto;
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 16px;
+        border: 1px solid #8dd99c;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-section h2 {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: #1a3310;
+    }
+
+    .btn-themed {
+        background-color: #8dd99c;
+        color: #1a3310;
+        border: none;
+        padding: 0.6rem 1.5rem;
+        font-weight: bold;
+        font-size: 1rem;
+        border-radius: 2rem;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 1.5rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-themed:hover {
+        background-color: #7ccc90;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #f0fff3;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    th, td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #ccebd6;
+        color: #1a3310;
+    }
+
+    th {
+        background-color: #e8fbe6;
+        font-weight: 600;
+    }
+
+    tr:hover {
+        background-color: #dff7dc;
+    }
+</style>
+
+<div class="product-section">
+    <h2>My Products</h2>
+
+    <a class="btn-themed" asp-action="AddProduct">Add Product</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Date Added</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Category</td>
+                    <td>R @product.Price</td>
+                    <td>@product.Quantity</td>
+                    <td>@product.DateAdded.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
