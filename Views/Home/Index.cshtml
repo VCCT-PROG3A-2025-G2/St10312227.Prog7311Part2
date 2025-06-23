@@ -1,117 +1,284 @@
-﻿@{
-    ViewData["Title"] = "Welcome to Agri-Energy Connect";
-}
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Agri-Energy Connect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #d7f8c7;
+            color: #1a3310;
+            line-height: 1.6;
+        }
 
-    body {
-        font-family: 'Inter', sans-serif;
-        background-color: #d7f8c7;
-        color: #1a3310;
-    }
+        .welcome-wrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4rem 2rem;
+            min-height: 100vh;
+            gap: 2rem;
+        }
 
-    .welcome-wrapper {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 4rem 2rem;
-        min-height: 100vh;
-        gap: 2rem;
-    }
+        .welcome-text {
+            flex: 1;
+            max-width: 50%;
+            animation: slideInLeft 1s ease-out;
+        }
 
-    .welcome-text {
-        flex: 1;
-        max-width: 50%;
-        animation: slideInLeft 1s ease-out;
-    }
+        @@keyframes slideInLeft {
+            from
 
-    @@keyframes slideInLeft {
-        from {
+        {
             opacity: 0;
             transform: translateX(-50px);
         }
+
         to {
             opacity: 1;
             transform: translateX(0);
         }
-    }
 
-    .brand-title {
-        font-size: 2rem;
-        font-weight: bold;
-        margin-bottom: 1.2rem;
-    }
-
-    .subtitle {
-        font-size: 1.1rem;
-        margin-bottom: 1rem;
-    }
-
-    .main-heading {
-        font-family: 'Playfair Display', serif;
-        font-size: 2.8rem;
-        font-weight: 700;
-        line-height: 1.3;
-        margin-bottom: 2rem;
-    }
-
-    .login-button {
-        margin-top: 1.5rem;
-    }
-
-    .cta-button {
-        background-color: #8dd99c;
-        color: #1a3310;
-        border: none;
-        padding: 0.8rem 1.8rem;
-        border-radius: 20px;
-        font-size: 1rem;
-        font-weight: 500;
-        cursor: pointer;
-        text-decoration: none;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    .cta-button:hover {
-        background-color: #7ccc90;
-        transform: scale(1.05);
-    }
-
-    /* Keyframes for rotating images */
-    @@keyframes imageRotation {
-        0% {
-            background-image: url('/images/green_farming.jpeg');
         }
+
+        .brand-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.2rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .main-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+        }
+
+        .login-button {
+            margin-top: 1.5rem;
+        }
+
+        .cta-button {
+            background-color: #8dd99c;
+            color: #1a3310;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+            .cta-button:hover {
+                background-color: #7ccc90;
+                transform: scale(1.05);
+            }
+
+        /* Keyframes for rotating images */
+        @@keyframes imageRotation {
+            0%
+
+        {
+            background-image: url('https://images.unsplash.com/photo-1492496913980-501348b61469?ixlib=rb-4.0.3');
+        }
+
         33% {
-            background-image: url('/images/greenFarming.jpeg');
+            background-image: url('https://images.unsplash.com/photo-1550645612-83f5d594b671?ixlib=rb-4.0.3');
         }
+
         66% {
-            background-image: url('/images/greenFarming2.jpeg');
+            background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3');
         }
+
         100% {
-            background-image: url('/images/greenFarming3.jpeg');
+            background-image: url('https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-4.0.3');
         }
-    }
 
-    .welcome-image {
-        flex: 1;
-        height: 500px;
-        background-image: url('/images/green_farming.jpeg');
-        background-size: cover;
-        background-position: center;
-        border-radius: 16px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        animation: imageRotation 12s infinite; 
-    }
+        }
 
-    @@media (max-width: 992px) {
-        .welcome-wrapper {
+        .welcome-image {
+            flex: 1;
+            height: 500px;
+            background-image: url('https://images.unsplash.com/photo-1492496913980-501348b61469?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            animation: imageRotation 12s infinite;
+        }
+
+        /* Services Section */
+        .services-section {
+            background-color: #f0f9ee;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .services-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #1a3310;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+            .services-title:after {
+                content: '';
+                position: absolute;
+                width: 70%;
+                height: 3px;
+                background: linear-gradient(to right, transparent, #8dd99c, transparent);
+                bottom: -10px;
+                left: 15%;
+            }
+
+        .services-subtitle {
+            color: #3d5a2f;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+            .service-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            }
+
+        .service-icon {
+            font-size: 3.5rem;
+            color: #5a9e69;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #1a3310;
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            color: #3d5a2f;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .learn-more {
+            display: inline-block;
+            color: #5a9e69;
+            font-weight: 500;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+            .learn-more:after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                background-color: #5a9e69;
+                bottom: -5px;
+                left: 0;
+                transition: width 0.3s ease;
+            }
+
+            .learn-more:hover {
+                color: #3d5a2f;
+            }
+
+                .learn-more:hover:after {
+                    width: 100%;
+                }
+
+        /* Footer */
+        .footer {
+            background-color: #1a3310;
+            color: #d7f8c7;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .social-icons {
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #3d5a2f;
+            border-radius: 50%;
+            margin: 0 0.5rem;
+            color: #d7f8c7;
+            font-size: 1.2rem;
+            line-height: 40px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+            .social-icon:hover {
+                background-color: #5a9e69;
+                transform: translateY(-5px);
+            }
+
+        @@media (max-width: 992px) {
+            .welcome-wrapper
+
+        {
             flex-direction: column;
             text-align: center;
         }
@@ -123,30 +290,116 @@
         .welcome-image {
             height: 300px;
         }
-    }
-</style>
 
-<div class="welcome-wrapper">
-    <div class="welcome-text">
-        <div class="brand-title">
-            Agri-Energy Connect
+        .services-section {
+            padding: 3rem 1.5rem;
+        }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-wrapper">
+        <div class="welcome-text">
+            <div class="brand-title">
+                Agri-Energy Connect
+            </div>
+
+            <div class="subtitle">
+                Empowering Sustainable Practices in Farming
+            </div>
+
+            <div class="main-heading">
+                Fostering Green<br />
+                Excellence Through Innovation
+            </div>
+
+            <div class="login-button">
+                <a class="cta-button" asp-controller="Account" asp-action="Login">
+                    Login
+                </a>
+            </div>
         </div>
 
-        <div class="subtitle">
-            Empowering Sustainable Practices in Farming
-        </div>
-
-        <div class="main-heading">
-            Fostering Green<br />
-            Excellence Through Innovation
-        </div>
-
-        <div class="login-button">
-            <a class="cta-button" asp-controller="Account" asp-action="Login">
-                Login
-            </a>
-        </div>
+        <div class="welcome-image"></div>
     </div>
 
-    <div class="welcome-image"></div>
-</div>
+    <!-- Services Section -->
+    <section class="services-section">
+        <h2 class="services-title">Services Provided</h2>
+        <p class="services-subtitle">Discover our comprehensive range of sustainable farming solutions designed to empower your agricultural practices</p>
+
+        <div class="services-container">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-solar-panel"></i>
+                </div>
+                <h3 class="service-name">Renewable Energy Integration</h3>
+                <p class="service-description">Custom solar and wind solutions for farms to reduce energy costs and carbon footprint while maintaining productivity.</p>
+                <a href="#" class="learn-more">Learn More</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <h3 class="service-name">Water Conservation Systems</h3>
+                <p class="service-description">Smart irrigation and rainwater harvesting solutions to optimize water usage and reduce waste.</p>
+                <a href="#" class="learn-more">Learn More</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3 class="service-name">Sustainable Crop Management</h3>
+                <p class="service-description">Organic farming techniques and crop rotation strategies to enhance soil health and biodiversity.</p>
+                <a href="#" class="learn-more">Learn More</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="service-name">Farm Analytics & Optimization</h3>
+                <p class="service-description">Data-driven insights to improve yield predictions, resource allocation, and operational efficiency.</p>
+                <a href="#" class="learn-more">Learn More</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <h3 class="service-name">Waste-to-Energy Solutions</h3>
+                <p class="service-description">Biomass conversion systems that transform agricultural waste into renewable energy sources.</p>
+                <a href="#" class="learn-more">Learn More</a>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3 class="service-name">Farmer Education Programs</h3>
+                <p class="service-description">Workshops and training on sustainable practices, new technologies, and market opportunities.</p>
+                <a href="#" class="learn-more">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3 class="footer-title">Agri-Energy Connect</h3>
+            <p class="footer-text">Transforming agriculture through sustainable energy solutions</p>
+            <p class="footer-text">Contact us: info@agrienergyconnect.com | 021 794 8641</p>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="footer-text" style="margin-top: 2rem;">&copy; 2025 Agri-Energy Connect. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
