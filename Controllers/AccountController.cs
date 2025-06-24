@@ -5,12 +5,20 @@ using System.Security.Cryptography;
 using System.Text;
 using AgriEnergyConnect.Models;
 using AgriEnergyConnect.ViewModels;
+using System.Collections.Generic;
 
 namespace AgriEnergyConnect.Controllers
 {
     public class AccountController : Controller
     {
         private readonly ApplicationDbContext _context;
+
+        // Hardcoded demo users
+        private readonly List<(string Username, string Password, string Role)> demoUsers = new()
+        {
+            ("kubz@gmail.com", "Kresen123", "Employee"),
+            ("kresen@gmail.com", "Kresen123", "Farmer")
+        };
 
         public AccountController(ApplicationDbContext context)
         {
@@ -39,6 +47,19 @@ namespace AgriEnergyConnect.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
+            
+            foreach (var demoUser in demoUsers)
+            {
+                if (model.Username == demoUser.Username && model.Password == demoUser.Password)
+                {
+                    HttpContext.Session.SetString("Username", demoUser.Username);
+                    HttpContext.Session.SetString("Role", demoUser.Role);
+                    ViewBag.LoginSuccess = true;
+                    return View(model);
+                }
+            }
+
+            // Check database users
             string hashedPassword = HashPassword(model.Password);
 
             var user = _context.Users
@@ -57,7 +78,6 @@ namespace AgriEnergyConnect.Controllers
             // Set login success flag for inline animation
             ViewBag.LoginSuccess = true;
 
-            // Instead of redirecting here, let the view trigger redirect via JavaScript
             return View(model);
         }
 
